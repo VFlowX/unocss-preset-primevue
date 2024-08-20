@@ -4,6 +4,7 @@ import {
   type ColorRange,
   THEME_COLORS,
 } from "../utils/constants"
+import { convert } from "./prime"
 
 export function generateColorRange<T extends string>(color: T) {
   let newColor: string = color
@@ -14,7 +15,7 @@ export function generateColorRange<T extends string>(color: T) {
   return COLOR_RANGE.reduce(
     (result, number) => ({
       ...result,
-      [number]: `var(--${color}-${number})`,
+      [number]: convert(`var(--${color}-${number})`),
     }),
     {} as { [K in ColorRange]: `var(--${T}-${K})` },
   )

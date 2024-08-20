@@ -2,7 +2,7 @@ import type { Preset } from "unocss"
 import type { Theme } from "@unocss/preset-mini"
 import { generateThemeColors, primevueTailWindPreset } from "./utils/generators"
 import type { PrimeSurfaceType, PrimeThemeColor } from "./utils/constants"
-import { rules as PrimeRules } from "./prime"
+import { rules as PrimeRules, convert } from "./utils/prime"
 
 export interface PresetPrimeOptions {
   /**
@@ -19,25 +19,25 @@ export const primeThemeColors = {
   ...colors,
   primary: {
     ...colors.primary,
-    "DEFAULT": "var(-p-primary-color)",
-    "text": "var(-p-primary-color-text)",
-    "contrast": "var(--p-primary-contrast-color)",
-    "emphasis": "var(--p-primary-hover-color)",
-    "primary-emphasis-alt": "var(--p-primary-active-color)",
+    "DEFAULT": convert("var(--p-primary-color)"),
+    "text": convert("var(--p-primary-color-text)"),
+    "contrast": convert("var(--p-primary-contrast-color)"),
+    "emphasis": convert("var(--p-primary-hover-color)"),
+    "primary-emphasis-alt": convert("var(--p-primary-active-color)"),
   },
   text: {
-    color: "var(--text-color)",
-    secondary: "var(--text-color-secondary)",
+    color: convert("var(--text-color)"),
+    secondary: convert("var(--text-color-secondary)"),
   },
   surface: {
-    0: "var(--p-surface-0)",
+    0: convert("var(--p-surface-0)"),
     ...colors.surface,
-    ground: "var(--p-surface-ground)",
-    section: "var(--p-surface-section)",
-    card: "var(--p-surface-card)",
-    overlay: "var(--p-surface-overlay)",
-    border: "var(--p-surface-border)",
-    hover: "var(--p-surface-hover)",
+    ground: convert("var(--p-surface-ground)"),
+    section: convert("var(--p-surface-section)"),
+    card: convert("var(--p-surface-card)"),
+    overlay: convert("var(--p-surface-overlay)"),
+    border: convert("var(--p-surface-border)"),
+    hover: convert("var(--p-surface-hover)"),
   },
 } as const
 
@@ -48,7 +48,6 @@ export const primeTheme = {
 } as const satisfies Theme
 
 export type PrimeTheme = typeof primeTheme
-primevueTailWindPreset(PrimeRules)
 export function presetPrime(options?: PresetPrimeOptions): Preset<Theme> {
   const { preflight = true } = options ?? {}
 

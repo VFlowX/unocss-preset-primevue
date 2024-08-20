@@ -15,18 +15,10 @@ export const COLOR_RANGE = [
 export type ColorRange = (typeof COLOR_RANGE)[number]
 
 export const THEME_COLORS = [
-  "blue",
-  "green",
-  "yellow",
   "cyan",
-  "pink",
   "indigo",
   "teal",
-  "orange",
   "bluegray",
-  "purple",
-  "red",
-  "gray",
   "primary",
   "surface",
 ] as const

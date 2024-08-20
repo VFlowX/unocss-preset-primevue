@@ -87,3 +87,7 @@ export const rules = {
     "animation-timing-function": "cubic-bezier(0.4, 0, 0.2, 1)",
   },
 }
+
+export function convert(color) {
+  return `color-mix(in srgb, ${color} calc(100% * <alpha-value>), transparent)`
+}

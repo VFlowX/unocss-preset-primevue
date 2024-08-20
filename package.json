@@ -15,6 +15,7 @@
   ],
   "scripts": {
     "dev": "bun --watch run src/index.ts",
+    "dev1": "bun --watch run src/index.1.ts",
     "b": "unbuild",
     "p": "pnpm pack --pack-destination ../web-template/lib/",
     "bp": "bun b && bun p",

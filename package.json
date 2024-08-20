@@ -1,0 +1,23 @@
+{
+  "name": "@vflowx/unocss-primevue",
+  "type": "module",
+  "version": "0.0.1",
+  "module": "index.ts",
+  "scripts": {
+    "b": "bun build --outfile dist/preset.js src/index.ts --format esm --minify --target node",
+    "p": "pnpm pack --pack-destination ../web-template/lib/",
+    "bp": "bun b && bun p",
+    "lint": "eslint --fix",
+    "taze": "taze major -I"
+  },
+  "dependencies": {
+    "unocss": "^0.62.2"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.25.2",
+    "@types/bun": "latest",
+    "eslint": "^9.9.0",
+    "taze": "^0.16.6",
+    "typescript": "^5.5.4"
+  }
+}

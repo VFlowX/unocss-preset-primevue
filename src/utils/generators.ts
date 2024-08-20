@@ -6,6 +6,11 @@ import {
 } from "../utils/constants"
 
 export function generateColorRange<T extends string>(color: T) {
+  let newColor: string = color
+  if (color === "primary" || color === "surface") {
+    newColor = `p-${newColor}`
+  }
+
   return COLOR_RANGE.reduce(
     (result, number) => ({
       ...result,
@@ -22,10 +27,25 @@ export function generateColorRangeWithDefault<T extends string>(color: T) {
 
 export function generateThemeColors() {
   return THEME_COLORS.reduce(
-    (result, color) => ({
-      ...result,
-      [color]: generateColorRangeWithDefault(color),
-    }),
+    (result, color) => {
+      let newColor: string = color
+      if (color === "primary" || color === "surface") {
+        newColor = `p-${newColor}`
+      }
+      return {
+        ...result,
+        [color]: generateColorRangeWithDefault(newColor),
+      }
+    },
     {} as { [K in Color]: ReturnType<typeof generateColorRangeWithDefault<K>> },
   )
+}
+
+export function primevueTailWindPreset(rules) {
+  const result = []
+  for (const key in rules) {
+    const keyz = key.replaceAll(".", "")
+    result.push([keyz, rules[key]])
+  }
+  return result
 }

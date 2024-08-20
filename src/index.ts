@@ -1,7 +1,8 @@
 import type { Preset } from "unocss"
 import type { Theme } from "@unocss/preset-mini"
-import { generateThemeColors } from "./utils/generators"
+import { generateThemeColors, primevueTailWindPreset } from "./utils/generators"
 import type { PrimeSurfaceType, PrimeThemeColor } from "./utils/constants"
+import { rules as PrimeRules } from "./prime"
 
 export interface PresetPrimeOptions {
   /**
@@ -10,14 +11,6 @@ export interface PresetPrimeOptions {
    * @defaultValue `true`
    */
   preflight?: boolean
-  /**
-   * Enable shortcuts for using `presetIcons` for PrimeIcons (ex. `pi-bars` and utilities like `pi-spin`).
-   *
-   * Requires installing the `@iconify-json/prime` package and configuring `presetIcons` in your UnoCSS config file.
-   *
-   * @defaultValue `false`
-   */
-  icons?: boolean
 }
 
 const colors = generateThemeColors()
@@ -26,28 +19,25 @@ export const primeThemeColors = {
   ...colors,
   primary: {
     ...colors.primary,
-    DEFAULT: "var(--primary-color)",
-    text: "var(--primary-color-text)",
+    "DEFAULT": "var(-p-primary-color)",
+    "text": "var(-p-primary-color-text)",
+    "contrast": "var(--p-primary-contrast-color)",
+    "emphasis": "var(--p-primary-hover-color)",
+    "primary-emphasis-alt": "var(--p-primary-active-color)",
   },
   text: {
     color: "var(--text-color)",
     secondary: "var(--text-color-secondary)",
   },
   surface: {
-    0: "var(--surface-0)",
+    0: "var(--p-surface-0)",
     ...colors.surface,
-    a: "var(--surface-a)",
-    b: "var(--surface-b)",
-    c: "var(--surface-c)",
-    d: "var(--surface-d)",
-    e: "var(--surface-e)",
-    f: "var(--surface-f)",
-    ground: "var(--surface-ground)",
-    section: "var(--surface-section)",
-    card: "var(--surface-card)",
-    overlay: "var(--surface-overlay)",
-    border: "var(--surface-border)",
-    hover: "var(--surface-hover)",
+    ground: "var(--p-surface-ground)",
+    section: "var(--p-surface-section)",
+    card: "var(--p-surface-card)",
+    overlay: "var(--p-surface-overlay)",
+    border: "var(--p-surface-border)",
+    hover: "var(--p-surface-hover)",
   },
 } as const
 
@@ -58,13 +48,14 @@ export const primeTheme = {
 } as const satisfies Theme
 
 export type PrimeTheme = typeof primeTheme
-
+primevueTailWindPreset(PrimeRules)
 export function presetPrime(options?: PresetPrimeOptions): Preset<Theme> {
-  const { preflight = true, icons = false } = options ?? {}
+  const { preflight = true } = options ?? {}
 
   const preset = {
-    name: "unocss-preset-prime",
+    name: "unocss-preset-primevue",
     theme: primeTheme,
+    rules: primevueTailWindPreset(PrimeRules),
     shortcuts: [
       {
         "bg-primary": "bg-primary text-primary-text",
@@ -74,7 +65,7 @@ export function presetPrime(options?: PresetPrimeOptions): Preset<Theme> {
       },
       [
         /^([a-z]*)-(ground$|section$|card$|overlay$|border$|hover$)/,
-        ([, p, v]) => `${p}-surface-${v}`,
+        ([, p, v]) => `${p}-p-surface-${v}`,
       ],
     ],
     preflights: preflight
@@ -83,7 +74,7 @@ export function presetPrime(options?: PresetPrimeOptions): Preset<Theme> {
             getCSS: () => `
               body {
                 margin: 0;
-                background-color: var(--surface-ground);
+                background-color: var(--p-surface-ground);
                 color: var(--text-color);
                 font-family: var(--font-family);
               }
@@ -92,22 +83,6 @@ export function presetPrime(options?: PresetPrimeOptions): Preset<Theme> {
         ]
       : undefined,
   } as Preset<Theme>
-
-  if (icons) {
-    if (!Array.isArray(preset.shortcuts))
-      preset.shortcuts = []
-
-    preset.shortcuts.push([
-      /^pi-(.*)$/,
-      ([, d]) => `i-prime-${d} i-scale-prime inline-block align-middle`,
-    ])
-
-    preset.shortcuts.push({
-      "i-scale-prime": "[scale:130%]",
-      "pi-fw": "w-1.28571429em",
-      "pi-spin": "animate-spin animate-duration-2s",
-    })
-  }
 
   return preset
 }

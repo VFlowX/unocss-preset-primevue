@@ -9,6 +9,7 @@ export const COLOR_RANGE = [
   700,
   800,
   900,
+  950,
 ] as const
 
 export type ColorRange = (typeof COLOR_RANGE)[number]

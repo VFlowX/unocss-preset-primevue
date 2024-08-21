@@ -45,8 +45,7 @@ export function generateThemeColors() {
 export function primevueTailWindPreset(rules) {
   const result = []
   for (const key in rules) {
-    const keyz = key.replaceAll(".", "")
-    result.push([keyz, rules[key]])
+    result.push([key, rules[key]])
   }
   return result
 }

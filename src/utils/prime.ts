@@ -1,89 +1,89 @@
 export const rules = {
-  ".backface-visible": {
+  "backface-visible": {
     "backface-visibility": "visible",
   },
-  ".backface-hidden": {
+  "backface-hidden": {
     "backface-visibility": "hidden",
   },
-  ".animate-normal": {
+  "animate-normal": {
     "animation-direction": "normal",
   },
-  ".animate-reverse": {
+  "animate-reverse": {
     "animation-direction": "reverse",
   },
-  ".animate-alternate": {
+  "animate-alternate": {
     "animation-direction": "alternate",
   },
-  ".animate-alternate-reverse": {
+  "animate-alternate-reverse": {
     "animation-direction": "alternate-reverse",
   },
-  ".animate-fill-none": {
+  "animate-fill-none": {
     "animation-fill-mode": "none",
   },
-  ".animate-fill-forwards": {
+  "animate-fill-forwards": {
     "animation-fill-mode": "forwards",
   },
-  ".animate-fill-backwards": {
+  "animate-fill-backwards": {
     "animation-fill-mode": "backwards",
   },
-  ".animate-fill-both": {
+  "animate-fill-both": {
     "animation-fill-mode": "both",
   },
-  ".animate-infinite": {
+  "animate-infinite": {
     "animation-iteration-count": "infinite",
   },
-  ".animate-once": {
+  "animate-once": {
     "animation-iteration-count": "1",
   },
-  ".animate-twice": {
+  "animate-twice": {
     "animation-iteration-count": "2",
   },
-  ".animate-running": {
+  "animate-running": {
     "animation-play-state": "running",
   },
-  ".animate-paused": {
+  "animate-paused": {
     "animation-play-state": "paused",
   },
-  ".border-surface": {
+  "border-surface": {
     "border-color": "var(--p-content-border-color)",
   },
-  ".bg-emphasis": {
+  "bg-emphasis": {
     background: "var(--p-content-hover-background)",
     color: "var(--p-content-hover-color)",
   },
-  ".bg-highlight": {
+  "bg-highlight": {
     background: "var(--p-highlight-background)",
     color: "var(--p-highlight-color)",
   },
-  ".bg-highlight-emphasis": {
+  "bg-highlight-emphasis": {
     background: "var(--p-highlight-focus-background)",
     color: "var(--p-highlight-focus-color)",
   },
-  ".rounded-border": {
+  "rounded-border": {
     "border-radius": "var(--p-content-border-radius)",
   },
-  ".text-color": {
+  "text-color": {
     color: "var(--p-text-color)",
   },
-  ".text-color-emphasis": {
+  "text-color-emphasis": {
     color: "var(--p-text-hover-color)",
   },
-  ".text-muted-color": {
+  "text-muted-color": {
     color: "var(--p-text-muted-color)",
   },
-  ".text-muted-color-emphasis": {
+  "text-muted-color-emphasis": {
     color: "var(--p-text-hover-muted-color)",
   },
-  ".animate-ease-linear": {
+  "animate-ease-linear": {
     "animation-timing-function": "linear",
   },
-  ".animate-ease-in": {
+  "animate-ease-in": {
     "animation-timing-function": "cubic-bezier(0.4, 0, 1, 1)",
   },
-  ".animate-ease-out": {
+  "animate-ease-out": {
     "animation-timing-function": "cubic-bezier(0, 0, 0.2, 1)",
   },
-  ".animate-ease-in-out": {
+  "animate-ease-in-out": {
     "animation-timing-function": "cubic-bezier(0.4, 0, 0.2, 1)",
   },
 }

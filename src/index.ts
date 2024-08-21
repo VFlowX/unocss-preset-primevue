@@ -54,7 +54,13 @@ export function presetPrime(options?: PresetPrimeOptions): Preset<Theme> {
   const preset = {
     name: "unocss-preset-primevue",
     theme: primeTheme,
-    rules: primevueTailWindPreset(PrimeRules),
+    rules: [
+      [
+        /^box-(border|content)/,
+        ([,p]) => `box-sizing: ${p}-box`,
+      ],
+      ...primevueTailWindPreset(PrimeRules),
+    ],
     shortcuts: [
       {
         "bg-primary": "bg-primary text-primary-text",
@@ -62,10 +68,10 @@ export function presetPrime(options?: PresetPrimeOptions): Preset<Theme> {
         "text-color": "text-text-color",
         "text-color-secondary": "text-text-secondary",
       },
-      [
-        /^([a-z]*)-(ground$|section$|card$|overlay$|border$|hover$)/,
-        ([, p, v]) => `${p}-p-surface-${v}`,
-      ],
+      // [
+      //   /^([a-z]*)-(ground$|section$|card$|overlay$|border$|hover$)/,
+      //   ([, p, v]) => `${p}-p-surface-${v}`,
+      // ],
     ],
     preflights: preflight
       ? [

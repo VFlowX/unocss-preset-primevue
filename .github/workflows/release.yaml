@@ -1,0 +1,35 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@v2
+      - name: Set node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          registry-url: "https://dieuhanh.nbca.gov.vn/gitea/api/packages/vflowx/npm/"
+          scope: "@vflowx"
+
+      - run: bunx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Install dependencies and build 🔧
+        run: bun i --frozen-lockfile --ignore-scripts && bun run b
+
+      - name: Publish package
+        run: npm publish --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITEA_TOKEN }}

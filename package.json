@@ -31,7 +31,7 @@
     "linkDirectory": true
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.27.3",
+    "@antfu/eslint-config": "^3.0.0",
     "@types/bun": "latest",
     "bumpp": "^9.5.2",
     "eslint": "^9.9.1",

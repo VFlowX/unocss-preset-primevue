@@ -1,7 +1,7 @@
 {
   "name": "@vflowx/unocss-primevue",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2-beta.1",
   "exports": {
     ".": {
       "import": "./dist/index.mjs"

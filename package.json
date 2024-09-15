@@ -26,17 +26,13 @@
   "peerDependencies": {
     "unocss": "^0.62.2"
   },
-  "publishConfig": {
-    "registry": "https://dieuhanh.nbca.gov.vn/gitea/api/packages/vflowx/npm/",
-    "linkDirectory": true
-  },
   "devDependencies": {
-    "@antfu/eslint-config": "^3.4.1",
+    "@antfu/eslint-config": "^3.7.3",
     "@types/bun": "latest",
-    "bumpp": "^9.5.2",
-    "eslint": "^9.10.0",
-    "taze": "^0.16.7",
-    "typescript": "^5.5.4",
+    "bumpp": "^9.6.1",
+    "eslint": "^9.11.1",
+    "taze": "^0.17.2",
+    "typescript": "^5.6.2",
     "unbuild": "^2.0.0"
   }
 }
